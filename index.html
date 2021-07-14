@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    canvas{
+        width: 300px;
+        height: 200px;
+        border: 1px solid #333;
+    }
+
+</style>
+<body>
+    <div id="app">
+        <h1> compteur :{{ compteur }}</h1>
+        <button v-on:click="plus">+</button>
+        <button v-on:click="moins">-</button>
+        <canvas v-on:mouseover ="coords"></canvas>
+        <p>{{ x }}/ {{ y }}</p>
+
+        <div v-on:click.once="foo">
+            <p>Lorem
+                <button v-on:click.stop="foo">click</button>
+            </p>
+        </div>
+        <form v-on:submit.prevent="onSubmit"></form>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data: {
+                compteur:0,
+                x:0,
+                y:0
+
+            },
+            methods: {
+                plus: function(){
+                    this.compteur++;
+                },
+                moins: function(){
+                    this.compteur--;
+                },
+                coords:function(e){
+                    // console.log(e);
+                    this.x = e.offsetX;
+                    this.y = e.offsetY;
+                },
+                foo: function(){
+                console.log('cliqué');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
